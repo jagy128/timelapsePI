@@ -22,7 +22,8 @@ else:
   TM = int(args.TMinutos)
 
 if args.SMinutos:
-  SM = int(args.SMinutos) 
+  SM = int(args.SMinutos)
+nume = 0
 
 print(TM,TH,SM) #Debug
 
@@ -38,8 +39,9 @@ def timelapse(total,separacion):
   while (round(time.time()-start)) <= total:
     print('tiempo=',(round(time.time()-start))) #Debug
     print('total=',total) #Debug
-    camera.capture("img"+str((round(time.time()-start)))+".jpg")
-    print("img"+str((round(time.time()-start)))+".jpg") #Debug
+    camera.capture("img"+(str(nume))+".jpg")
+    nume += 1
+    print('file=',nume) #Debug
     time.sleep(separacion)
     print('tiempomas=',(round(time.time()-start)))  #Debug
     print('totalmas=',total)   #Debug
