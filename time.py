@@ -11,15 +11,20 @@ parser.add_argument("-Th", "--THoras", help="Tiempo total en horas.")
 parser.add_argument("-S", "--SMinutos", help="Minutos entre fotos.")
 args = parser.parse_args()
 
-TM = 0
-TH = 0
-SM = 0
+if args.THoras and args.TMinutos:
+  TH = int(args.THoras)
+  TM = int(args.TMinutos)
+elif args.THoras:
+  TH = int(args.THoras)
+  TM = 0
+else:
+  TH = 0
+  TM = int(args.TMinutos)
 
-TM = int(args.TMinutos)
-TH = args.THoras
-SM = int(args.SMinutos)
+if args.SMinutos:
+  SM = int(args.SMinutos) 
 
-print(TM,TH,SM)
+print(TM,TH,SM) #Debug
 
 def segundos(minutos, horas):
   if horas:
@@ -29,17 +34,16 @@ def segundos(minutos, horas):
 
 def timelapse(total,separacion):
   start = round(time.time())
-  print('start=',start)
+  print('start=',start) #Debug
   while (round(time.time()-start)) <= total:
-    print('tiempo=',(round(time.time()-start)))
-    print('total=',total)
-    #for filename in camera.capture_continuous('img{counter:03d}.jpg')
+    print('tiempo=',(round(time.time()-start))) #Debug
+    print('total=',total) #Debug
     camera.capture("img"+str((round(time.time()-start)))+".jpg")
-    print("img"+str((round(time.time()-start)))+".jpg")
+    print("img"+str((round(time.time()-start)))+".jpg") #Debug
     time.sleep(separacion)
-    print('tiempomas=',(round(time.time()-start)))
-    print('totalmas=',total)
-    print('es?..',(round(time.time()-start)) <= total)
+    print('tiempomas=',(round(time.time()-start)))  #Debug
+    print('totalmas=',total)   #Debug
+    print('es?..',(round(time.time()-start)) <= total) #Debug
 
 total = segundos(TM, TH)
 separacion = segundos(SM, 0)
