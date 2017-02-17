@@ -23,7 +23,6 @@ else:
 
 if args.SMinutos:
   SM = int(args.SMinutos)
-nume = 0
 
 print(TM,TH,SM) #Debug
 
@@ -35,6 +34,7 @@ def segundos(minutos, horas):
 
 def timelapse(total,separacion):
   start = round(time.time())
+  nume = 0
   print('start=',start) #Debug
   while (round(time.time()-start)) <= total:
     print('tiempo=',(round(time.time()-start))) #Debug
